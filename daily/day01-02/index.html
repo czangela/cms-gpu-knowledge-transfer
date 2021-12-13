@@ -307,6 +307,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#performance-measurement" class="md-nav__link">
     Performance measurement
   </a>
@@ -351,13 +358,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercise-01" class="md-nav__link">
-    Exercise 01
-  </a>
   
 </li>
       
@@ -424,6 +424,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#performance-measurement" class="md-nav__link">
     Performance measurement
   </a>
@@ -472,13 +479,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exercise-01" class="md-nav__link">
-    Exercise 01
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#execution-configuration" class="md-nav__link">
     Execution Configuration
   </a>
@@ -499,7 +499,27 @@
                 
                 
 <h1 id="week-01-20211206-10">Week 01 - 2021.12.06-10.</h1>
-<p>based on <a href="https://indico.cern.ch/event/863657/">Introduction to parallel programming and CUDA by Felice Pantaleo</a></p>
+<details class="info" open="open"><summary>Overview</summary><ul>
+<li>What is the CUDA programming model?</li>
+<li>What are some key language extensions?</li>
+<li>How to launch kernels?</li>
+</ul>
+</details>
+<details class="tip" open="open"><summary>Resources</summary><p>based on <a href="https://indico.cern.ch/event/863657/">Introduction to parallel programming and CUDA by Felice Pantaleo</a></p>
+<p>and <a href="https://nyu-cds.github.io/python-gpu/02-cuda/">https://nyu-cds.github.io/python-gpu/02-cuda/</a></p>
+</details>
+<h2 id="introduction">Introduction</h2>
+<p>This section is based on <a href="https://nyu-cds.github.io/python-gpu/02-cuda/">https://nyu-cds.github.io/python-gpu/02-cuda/</a>.</p>
+<p>In November 2006, NVIDIA introduced CUDA, which originally stood for “Compute Unified Device Architecture”, a general purpose parallel computing platform and programming model that leverages the parallel compute engine in NVIDIA GPUs to solve many complex computational problems in a more efficient way than on a CPU.</p>
+<p>The CUDA parallel programming model has three key abstractions at its core:</p>
+<ul>
+<li>a hierarchy of thread groups</li>
+<li>shared memories</li>
+<li>barrier synchronization</li>
+</ul>
+<p>There are exposed to the programmer as a minimal set of language extensions.</p>
+<p>In parallel programming, granularity means the amount of computation in relation to communication (or transfer) of data. Fine-grained parallelism means individual tasks are relatively small in terms of code size and execution time. The data is transferred among processors frequently in amounts of one or a few memory words. Coarse-grained is the opposite in that data is communicated infrequently, after larger amounts of computation.</p>
+<p>The CUDA abstractions provide fine-grained data parallelism and thread parallelism, nested within coarse-grained data parallelism and task parallelism. They guide the programmer to partition the problem into coarse sub-problems that can be solved independently in parallel by blocks of threads, and each sub-problem into finer pieces that can be solved cooperatively in parallel by all threads within the block.</p>
 <h2 id="performance-measurement">Performance measurement</h2>
 <ol>
 <li>Memory throughput</li>
@@ -547,8 +567,16 @@ A <strong>global</strong> function must have void return type, and cannot be a m
 <p>It is equivalent to declare a function with only the <strong>host</strong> execution space specifier or to declare it without any of the <strong>host</strong>, <strong>device</strong>, or <strong>global</strong> execution space specifier; in either case the function is compiled for the host only.</p>
 <p>The <strong>global</strong> and <strong>host</strong> execution space specifiers cannot be used together.</p>
 <p>The <strong>device</strong> and <strong>host</strong> execution space specifiers can be used together however, in which case the function is compiled for both the host and the device.</p>
-<h2 id="exercise-01">Exercise 01</h2>
-<p>Give an example of <code>global</code>, <code>device</code> and <code>host-device</code> functions in <code>CMSSW</code>. Can you find an example where <code>host</code> and <code>device</code> code diverge? How is this achieved?</p>
+<details class="question" open="open"><summary>Question</summary><ul>
+<li>
+<p>Give an example of <code>global</code>, <code>device</code> and <code>host-device</code> functions in <code>CMSSW</code>.</p>
+</li>
+<li>
+<p>Can you find an example where <code>host</code> and <code>device</code> code diverge? How is this achieved?</p>
+</li>
+</ul>
+</details>
+<details class="answer"><summary>Answer</summary></details>
 <h2 id="execution-configuration">Execution Configuration</h2>
 <p><a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#execution-configuration">From CUDA Toolkit Documentation: Execution Configuration</a></p>
 <p>Any call to a <strong>global</strong> function must specify the execution configuration for that call. The execution configuration defines the dimension of the grid and blocks that will be used to execute the function on the device, as well as the associated stream (see CUDA Runtime for a description of streams).</p>
