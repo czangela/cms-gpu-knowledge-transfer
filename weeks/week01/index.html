@@ -497,14 +497,18 @@
 <h2 id="introduction">Introduction</h2>
 <p>This section is based on <a href="https://nyu-cds.github.io/python-gpu/02-cuda/">https://nyu-cds.github.io/python-gpu/02-cuda/</a>.</p>
 <p>In November 2006, NVIDIA introduced CUDA, which originally stood for “Compute Unified Device Architecture”, a general purpose parallel computing platform and programming model that leverages the parallel compute engine in NVIDIA GPUs to solve many complex computational problems in a more efficient way than on a CPU.</p>
-<p>The CUDA parallel programming model has three key abstractions at its core:</p>
-<ul>
+<details class="quote" open="open"><summary>The CUDA parallel programming model has three key abstractions at its core:</summary><ul>
 <li>a hierarchy of thread groups</li>
 <li>shared memories</li>
 <li>barrier synchronization</li>
 </ul>
-<p>There are exposed to the programmer as a minimal set of language extensions.</p>
-<p>In parallel programming, granularity means the amount of computation in relation to communication (or transfer) of data. Fine-grained parallelism means individual tasks are relatively small in terms of code size and execution time. The data is transferred among processors frequently in amounts of one or a few memory words. Coarse-grained is the opposite in that data is communicated infrequently, after larger amounts of computation.</p>
+</details>
+<p>They are exposed to the programmer as a <strong>minimal set of language extensions</strong>.</p>
+<p>In parallel programming, granularity means the amount of computation in relation to communication (or transfer) of data.</p>
+<details class="abstract" open="open"><summary>Granularity</summary><p>Add def later.</p>
+</details>
+<p>Fine-grained parallelism means individual tasks are relatively small in terms of code size and execution time. The data is transferred among processors frequently in amounts of one or a few memory words. Coarse-grained is the opposite in that data is communicated infrequently, after larger amounts of computation.</p>
+<p><img alt="Fine-course grained parallelism" src="https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/gh-pages/img/w01_img02.png" /></p>
 <p>The CUDA abstractions provide fine-grained data parallelism and thread parallelism, nested within coarse-grained data parallelism and task parallelism. They guide the programmer to partition the problem into coarse sub-problems that can be solved independently in parallel by blocks of threads, and each sub-problem into finer pieces that can be solved cooperatively in parallel by all threads within the block.</p>
 <h2 id="performance-measurement">Performance measurement</h2>
 <ol>
