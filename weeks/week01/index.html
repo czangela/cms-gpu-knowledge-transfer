@@ -38,6 +38,17 @@
     
       
 
+  
+
+
+  
+
+  
+
+
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-ZZ8D6PMHP5"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-ZZ8D6PMHP5",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ8D6PMHP5"></script>
+
 
     
     
@@ -311,6 +322,26 @@
     Introduction
   </a>
   
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cuda-a-general-purpose-parallel-computing-platform-and-programming-model" class="md-nav__link">
+    1. CUDA®: A General-Purpose Parallel Computing Platform and Programming Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-a-scalable-programming-model" class="md-nav__link">
+    2. A Scalable Programming Model
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -377,6 +408,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week01_exercises/" class="md-nav__link">
+        Week 01 - Exercises
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -413,6 +458,26 @@
   <a href="#introduction" class="md-nav__link">
     Introduction
   </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cuda-a-general-purpose-parallel-computing-platform-and-programming-model" class="md-nav__link">
+    1. CUDA®: A General-Purpose Parallel Computing Platform and Programming Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-a-scalable-programming-model" class="md-nav__link">
+    2. A Scalable Programming Model
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -491,25 +556,46 @@
 <li>How to launch kernels?</li>
 </ul>
 </details>
-<details class="tip" open="open"><summary>Resources</summary><p>based on <a href="https://indico.cern.ch/event/863657/">Introduction to parallel programming and CUDA by Felice Pantaleo</a></p>
-<p>and <a href="https://nyu-cds.github.io/python-gpu/02-cuda/">https://nyu-cds.github.io/python-gpu/02-cuda/</a></p>
+<details class="tip" open="open"><summary>Resources</summary><p>This material heavily borrows from the following sources:</p>
+<ul>
+<li>
+<p><a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html">CUDA C++ Programming Guide</a></p>
+</li>
+<li>
+<p><a href="https://nyu-cds.github.io/python-gpu/02-cuda/">Introduction to GPUs by New York University</a></p>
+</li>
+<li>
+<p><a href="https://indico.cern.ch/event/863657/">Introduction to parallel programming and CUDA by Felice Pantaleo</a></p>
+</li>
+</ul>
 </details>
 <h2 id="introduction">Introduction</h2>
-<p>This section is based on <a href="https://nyu-cds.github.io/python-gpu/02-cuda/">https://nyu-cds.github.io/python-gpu/02-cuda/</a>.</p>
-<p>In November 2006, NVIDIA introduced CUDA, which originally stood for “Compute Unified Device Architecture”, a general purpose parallel computing platform and programming model that leverages the parallel compute engine in NVIDIA GPUs to solve many complex computational problems in a more efficient way than on a CPU.</p>
-<details class="quote" open="open"><summary>The CUDA parallel programming model has three key abstractions at its core:</summary><ul>
+<h3 id="1-cuda-a-general-purpose-parallel-computing-platform-and-programming-model">1. CUDA®: A General-Purpose Parallel Computing Platform and Programming Model</h3>
+<p>In November 2006, NVIDIA®  introduced CUDA® , which originally stood for “Compute Unified Device Architecture”, a general purpose parallel computing platform and programming model that leverages the parallel compute engine in NVIDIA GPUs to solve many complex computational problems in a more efficient way than on a CPU.</p>
+<p>CUDA comes with a software environment that allows developers to use C++ as a high-level programming language. Other languages, application programming interfaces, or directives-based approaches are supported, such as FORTRAN, DirectCompute, OpenACC.</p>
+<p><img alt="GPU Computing Applications" src="https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/gpu-computing-applications.png" /></p>
+<h3 id="2-a-scalable-programming-model">2. A Scalable Programming Model</h3>
+<details class="quote" open="open"><summary>At the core of the  CUDA parallel programming model there are three key abstractions:</summary><ul>
 <li>a hierarchy of thread groups</li>
 <li>shared memories</li>
 <li>barrier synchronization</li>
 </ul>
 </details>
 <p>They are exposed to the programmer as a <strong>minimal set of language extensions</strong>.</p>
-<p>In parallel programming, granularity means the amount of computation in relation to communication (or transfer) of data.</p>
-<details class="abstract" open="open"><summary>Granularity</summary><p>Add def later.</p>
+<p>These abstractions provide <strong>fine-grained data parallelism and thread parallelism</strong>, nested within <strong>coarse-grained data parallelism and task parallelism</strong>.</p>
+<details class="abstract" open="open"><summary>Granularity</summary><p>If <img alt="T_comp" src="https://latex.codecogs.com/svg.image?T_{comp}" /> is the computation time and <img alt="T_comm" src="https://latex.codecogs.com/svg.image?T_{comm}" /> denotes the communication time, then the Granularity G of a task can be calculated as</p>
+<p><img alt="T_comp" src="https://latex.codecogs.com/svg.image?G=\frac{T_{comp}}{T_{comm}}" /></p>
+<p>Granularity is usually measured in terms of the number of instructions executed in a particular task.</p>
 </details>
-<p>Fine-grained parallelism means individual tasks are relatively small in terms of code size and execution time. The data is transferred among processors frequently in amounts of one or a few memory words. Coarse-grained is the opposite in that data is communicated infrequently, after larger amounts of computation.</p>
+<details class="abstract" open="open"><summary>Fine-grained parallelism</summary><p>Fine-grained parallelism means individual tasks are relatively small in terms of code size and execution time. The data is transferred among processors frequently in amounts of one or a few memory words.</p>
+</details>
+<details class="abstract" open="open"><summary>Coarse-grained parallelism</summary><p>Coarse-grained is the opposite in the sense that data is communicated infrequently, after larger amounts of computation.</p>
+</details>
 <p><img alt="Fine-course grained parallelism" src="https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/gh-pages/img/w01_img02.png" /></p>
-<p>The CUDA abstractions provide fine-grained data parallelism and thread parallelism, nested within coarse-grained data parallelism and task parallelism. They guide the programmer to partition the problem into coarse sub-problems that can be solved independently in parallel by blocks of threads, and each sub-problem into finer pieces that can be solved cooperatively in parallel by all threads within the block.</p>
+<p>The CUDA abstractions provide fine-grained data parallelism and thread parallelism, nested within coarse-grained data parallelism and task parallelism. They guide the programmer to partition the problem into <strong>coarse sub-problems</strong> that can be solved independently in parallel by blocks of threads, and each sub-problem into <strong>finer pieces that can be solved cooperatively in parallel by all threads within the block</strong>.</p>
+<p>This decomposition preserves language expressivity by allowing threads to cooperate when solving each sub-problem, and at the same time enables automatic scalability.</p>
+<p>Indeed, each block of threads can be scheduled on any of the available multiprocessors within a GPU, in any order, concurrently or sequentially, so that a compiled CUDA program can execute on any number of multiprocessors.</p>
+<p><img alt="CUDA Automatic Scalability" src="https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/automatic-scalability.png" width="800" /></p>
 <h2 id="performance-measurement">Performance measurement</h2>
 <ol>
 <li>Memory throughput</li>
@@ -618,6 +704,21 @@ A <strong>global</strong> function must have void return type, and cannot be a m
           </div>
         </a>
       
+      
+        
+        <a href="../week01_exercises/" class="md-footer__link md-footer__link--next" aria-label="Next: Week 01 - Exercises" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Week 01 - Exercises
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
