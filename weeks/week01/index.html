@@ -663,7 +663,7 @@
 </code></pre></div>
 </details>
 <div class="admonition question">
-<p class="admonition-title">02. Question: raw to digi conversion kernel</p>
+<p class="admonition-title">01. Question: raw to digi conversion kernel</p>
 <ul>
 <li>Find the kernel that converts raw data to digis.</li>
 <li>Where is it launched?</li>
@@ -722,7 +722,7 @@ A <strong>global</strong> function must have void return type, and cannot be a m
 <p>The <strong>global</strong> and <strong>host</strong> execution space specifiers cannot be used together.</p>
 <p>The <strong>device</strong> and <strong>host</strong> execution space specifiers can be used together however, in which case the function is compiled for both the host and the device.</p>
 <div class="admonition question">
-<p class="admonition-title">03. Question: host and device functions</p>
+<p class="admonition-title">02. Question: host and device functions</p>
 <ul>
 <li>
 <p>Give an example of <code>global</code>, <code>device</code> and <code>host-device</code> functions in <code>CMSSW</code>.</p>
@@ -734,7 +734,7 @@ A <strong>global</strong> function must have void return type, and cannot be a m
 <p><a href="../week01_exercises/#exercise_01_02">Go to exercise 01_02</a></p>
 </div>
 <div class="admonition question">
-<p class="admonition-title">04. Exercise: Write a kernel in which</p>
+<p class="admonition-title">03. Exercise: Write a kernel in which</p>
 <ul>
 <li>
 <p>if we're running on the <code>device</code> each thread prints which <code>block</code> and <code>thread</code> it is associated with, for example <code>block 1 thread 3</code></p>
@@ -782,7 +782,7 @@ A <strong>global</strong> function must have void return type, and cannot be a m
 <p>Follow-up on <code>__syncthreads()</code> and <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#shared-memory">shared memory</a>.</p>
 </div>
 <div class="admonition question">
-<p class="admonition-title">01. Question: Fine-grained vs coarse-grained parallelism</p>
+<p class="admonition-title">04. Question: Fine-grained vs coarse-grained parallelism</p>
 <ul>
 <li>Give examples in the <code>MatMulKernel</code> kernel of <strong>coarse-grained</strong> and <strong>fine-grained data parallelism</strong> (as defined in CUDA abstraction model) as well as sequential execution.</li>
 </ul>
