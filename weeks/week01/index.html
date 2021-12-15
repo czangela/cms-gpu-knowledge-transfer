@@ -345,44 +345,64 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#performance-measurement" class="md-nav__link">
-    Performance measurement
+  <a href="#programming-model" class="md-nav__link">
+    Programming model
+  </a>
+  
+    <nav class="md-nav" aria-label="Programming model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-kernels" class="md-nav__link">
+    3. Kernels
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#spmd" class="md-nav__link">
-    SPMD
+        
+          <li class="md-nav__item">
+  <a href="#4-thread-hierarchy" class="md-nav__link">
+    4. Thread hierarchy
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#language-extensions" class="md-nav__link">
-    Language extensions
+        
+          <li class="md-nav__item">
+  <a href="#5-language-extensions" class="md-nav__link">
+    5. Language extensions
   </a>
   
-    <nav class="md-nav" aria-label="Language extensions">
+    <nav class="md-nav" aria-label="5. Language extensions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#__global__" class="md-nav__link">
-    __global__ :
+    __global__
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#__device__" class="md-nav__link">
-    __device__ :
+    __device__
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#__host__" class="md-nav__link">
-    __host__ :
+    __host__
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-execution-configuration" class="md-nav__link">
+    6. Execution Configuration
   </a>
   
 </li>
@@ -393,8 +413,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execution-configuration" class="md-nav__link">
-    Execution Configuration
+  <a href="#abstractions-granularity" class="md-nav__link">
+    Abstractions: Granularity
   </a>
   
 </li>
@@ -416,6 +436,20 @@
     <li class="md-nav__item">
       <a href="../week01_exercises/" class="md-nav__link">
         Week 01 - Exercises
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../further_reading/" class="md-nav__link">
+        Further reading
       </a>
     </li>
   
@@ -482,44 +516,64 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#performance-measurement" class="md-nav__link">
-    Performance measurement
+  <a href="#programming-model" class="md-nav__link">
+    Programming model
+  </a>
+  
+    <nav class="md-nav" aria-label="Programming model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-kernels" class="md-nav__link">
+    3. Kernels
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#spmd" class="md-nav__link">
-    SPMD
+        
+          <li class="md-nav__item">
+  <a href="#4-thread-hierarchy" class="md-nav__link">
+    4. Thread hierarchy
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#language-extensions" class="md-nav__link">
-    Language extensions
+        
+          <li class="md-nav__item">
+  <a href="#5-language-extensions" class="md-nav__link">
+    5. Language extensions
   </a>
   
-    <nav class="md-nav" aria-label="Language extensions">
+    <nav class="md-nav" aria-label="5. Language extensions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#__global__" class="md-nav__link">
-    __global__ :
+    __global__
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#__device__" class="md-nav__link">
-    __device__ :
+    __device__
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#__host__" class="md-nav__link">
-    __host__ :
+    __host__
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-execution-configuration" class="md-nav__link">
+    6. Execution Configuration
   </a>
   
 </li>
@@ -530,8 +584,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execution-configuration" class="md-nav__link">
-    Execution Configuration
+  <a href="#abstractions-granularity" class="md-nav__link">
+    Abstractions: Granularity
   </a>
   
 </li>
@@ -552,8 +606,8 @@
 <h1 id="week-01-20211206-10">Week 01 - 2021.12.06-10.</h1>
 <details class="info" open="open"><summary>Overview</summary><ul>
 <li>What is the CUDA programming model?</li>
-<li>What are some key language extensions?</li>
-<li>How to launch kernels?</li>
+<li>Hierarchy of thread groups</li>
+<li>Kernels and other language extensions</li>
 </ul>
 </details>
 <details class="tip" open="open"><summary>Resources</summary><p>This material heavily borrows from the following sources:</p>
@@ -583,42 +637,65 @@
 </details>
 <p>They are exposed to the programmer as a <strong>minimal set of language extensions</strong>.</p>
 <p>These abstractions provide <strong>fine-grained data parallelism and thread parallelism</strong>, nested within <strong>coarse-grained data parallelism and task parallelism</strong>.</p>
-<details class="abstract" open="open"><summary>Granularity</summary><p>If <img alt="T_comp" src="https://latex.codecogs.com/svg.image?T_{comp}" /> is the computation time and <img alt="T_comm" src="https://latex.codecogs.com/svg.image?T_{comm}" /> denotes the communication time, then the Granularity G of a task can be calculated as</p>
-<p><img alt="T_comp" src="https://latex.codecogs.com/svg.image?G=\frac{T_{comp}}{T_{comm}}" /></p>
-<p>Granularity is usually measured in terms of the number of instructions executed in a particular task.</p>
+<div class="admonition tip">
+<p class="admonition-title">Further reading and material</p>
+<p>Optional reading and exercise on this topic at <a href="./week01/#abstractions-granularity">abstractions: granularity</a>.</p>
+</div>
+<h2 id="programming-model">Programming model</h2>
+<h3 id="3-kernels">3. Kernels</h3>
+<p>CUDA C++ extends C++ by allowing the programmer to define C++ functions, called <em>kernels</em>, that, when called, are executed <code>N</code> times in parallel by <code>N</code> different CUDA threads, as opposed to only once like regular C++ functions.</p>
+<p>A kernel is defined using the <code>__global__</code> declaration specifier and the number of CUDA threads that execute that kernel for a given kernel call is specified using a new <code>&lt;&lt;&lt;...&gt;&gt;&gt;</code> execution configuration syntax.</p>
+<p>Each thread that executes the kernel is given a <em>unique thread ID</em> that is accessible within the kernel through built-in variables.</p>
+<details class="example" open="open"><summary>Kernel and execution configuration example</summary><div class="highlight"><pre><span></span><code><span class="c1">// Kernel definition</span>
+<span class="kr">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">VecAdd</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">C</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Kernel invocation with N threads</span>
+<span class="w">    </span><span class="n">VecAdd</span><span class="o">&lt;&lt;&lt;</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">C</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 </details>
-<details class="abstract" open="open"><summary>Fine-grained parallelism</summary><p>Fine-grained parallelism means individual tasks are relatively small in terms of code size and execution time. The data is transferred among processors frequently in amounts of one or a few memory words.</p>
-</details>
-<details class="abstract" open="open"><summary>Coarse-grained parallelism</summary><p>Coarse-grained is the opposite in the sense that data is communicated infrequently, after larger amounts of computation.</p>
-</details>
-<p><img alt="Fine-course grained parallelism" src="https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/gh-pages/img/w01_img02.png" /></p>
-<p>The CUDA abstractions provide fine-grained data parallelism and thread parallelism, nested within coarse-grained data parallelism and task parallelism. They guide the programmer to partition the problem into <strong>coarse sub-problems</strong> that can be solved independently in parallel by blocks of threads, and each sub-problem into <strong>finer pieces that can be solved cooperatively in parallel by all threads within the block</strong>.</p>
-<p>This decomposition preserves language expressivity by allowing threads to cooperate when solving each sub-problem, and at the same time enables automatic scalability.</p>
-<p>Indeed, each block of threads can be scheduled on any of the available multiprocessors within a GPU, in any order, concurrently or sequentially, so that a compiled CUDA program can execute on any number of multiprocessors.</p>
-<p><img alt="CUDA Automatic Scalability" src="https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/automatic-scalability.png" width="800" /></p>
-<h2 id="performance-measurement">Performance measurement</h2>
-<ol>
-<li>Memory throughput</li>
-<li>
-<p>Processing throughput</p>
-</li>
-<li>
-<p>Memory throughput is also referred to as memory bandwidth.</p>
-</li>
-</ol>
-<p>To calculate the memory bandwidth we need to understand two concepts related to it.</p>
-<p><strong>Memory interface width:</strong> It is the physical bit-width of the memory bus. Every clock-cycle data is transferred along a memory bus to and from the on-card memory. The memory interface width is the physical count of the bits of how many can fit down the bus per clock cycle.</p>
-<p><strong>Memory clock rate:</strong> (or memory clock cycle) Measured in the unit of <em>Hz</em> it is the rate of memory bus clock. For example a memory bus operating on a 1GHz rate is capable of issuing memory tranfers with the bus 10^9 times per second.</p>
-<p>Talking about clock rate it is important to take a detour to <em>SDR</em>, <em>DDR</em> and <em>QDR</em>.</p>
-<p><img alt="SDR,QDR,DDR image" src="https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/gh-pages/img/d02_img01.png" /></p>
-<details class="example" open="open"><summary>Example</summary><p>A simple analogy is of course public transport, where memory interface width would be the number of seats on a bus and the memory clock rate is the frequency of buses in unit time (hour let's say).
-Multiplying these two numbers we can calculate how many people can be transported along one bus line in a certain time period.</p>
-</details>
-<h2 id="spmd">SPMD</h2>
-<p>Single Program Multiple Data</p>
-<h2 id="language-extensions">Language extensions</h2>
+<div class="admonition question">
+<p class="admonition-title">02. Question: raw to digi conversion kernel</p>
+<ul>
+<li>Find the kernel that converts raw data to digis.</li>
+<li>Where is it launched?</li>
+<li>What is the execution configuration?</li>
+<li>How do we access individual threads in the kernel?</li>
+</ul>
+<p><a href="../week01_exercises/#exercise_01_01">Go to exercise 01_01</a></p>
+</div>
+<h3 id="4-thread-hierarchy">4. Thread hierarchy</h3>
+<p>A kernel is executed in parallel by an array of threads:</p>
+<ul>
+<li>All threads run the same code.</li>
+<li>Each thread has an ID that it uses to compute memory addresses and make control decisions.</li>
+</ul>
+<p><img alt="thread_img_01" src="https://nyu-cds.github.io/python-gpu/fig/02-threadblocks.png" width="300" /></p>
+<p>Threads are arranged as a grid of thread blocks:</p>
+<ul>
+<li>Different kernels can have different grid/block configuration</li>
+<li>Threads from the same block have access to a shared memory and their execution can be synchronized</li>
+</ul>
+<p><img alt="thread_img_02" src="https://nyu-cds.github.io/python-gpu/fig/02-threadgrid.png" /></p>
+<p>Thread blocks are required to execute independently: It must be possible to execute them in any order, in parallel or in series.</p>
+<p>This independence requirement allows thread blocks to be scheduled in any order across any number of cores, enabling programmers to write code that scales with the number of cores.</p>
+<p>Threads within a block can cooperate by sharing data through some shared memory and by synchronizing their execution to coordinate memory accesses.</p>
+<p>The grid of blocks and the thread blocks can be 1, 2, or 3-dimensional.</p>
+<p><img alt="thread_img_03" src="https://nyu-cds.github.io/python-gpu/fig/02-threadmapping.png" /></p>
+<p>The CUDA architecture is built around a scalable array of multithreaded <strong>Streaming Multiprocessors</strong> (SMs) as shown below.</p>
+<p>Each SM has a set of execution units, a set of registers and a chunk of shared memory.</p>
+<p><img alt="sm_img_01" src="https://nyu-cds.github.io/python-gpu/fig/02-sm.png" /></p>
+<h3 id="5-language-extensions">5. Language extensions</h3>
 <p><a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#c-language-extensions">From CUDA Toolkit Documentation: Language Extensions</a>:</p>
-<h3 id="__global__"><code>__global__</code> :</h3>
+<h4 id="__global__"><code>__global__</code></h4>
 <p>The <strong>global</strong> execution space specifier declares a function as being a kernel. Such a function is:</p>
 <ul>
 <li>Executed on the device,</li>
@@ -628,14 +705,14 @@ A <strong>global</strong> function must have void return type, and cannot be a m
 </ul>
 <p>Any call to a <strong>global</strong> function must specify its execution configuration as described in <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#execution-configuration">Execution</a>.</p>
 <p>A call to a <strong>global</strong> function is asynchronous, meaning it returns before the device has completed its execution.</p>
-<h3 id="__device__"><code>__device__</code> :</h3>
+<h4 id="__device__"><code>__device__</code></h4>
 <p>The <strong>device</strong> execution space specifier declares a function that is:</p>
 <ul>
 <li>Executed on the device,</li>
 <li>Callable from the device only.</li>
 </ul>
 <p>The <strong>global</strong> and <strong>device</strong> execution space specifiers cannot be used together.</p>
-<h3 id="__host__"><code>__host__</code> :</h3>
+<h4 id="__host__"><code>__host__</code></h4>
 <p>The <strong>host</strong> execution space specifier declares a function that is:</p>
 <ul>
 <li>Executed on the host,</li>
@@ -644,7 +721,9 @@ A <strong>global</strong> function must have void return type, and cannot be a m
 <p>It is equivalent to declare a function with only the <strong>host</strong> execution space specifier or to declare it without any of the <strong>host</strong>, <strong>device</strong>, or <strong>global</strong> execution space specifier; in either case the function is compiled for the host only.</p>
 <p>The <strong>global</strong> and <strong>host</strong> execution space specifiers cannot be used together.</p>
 <p>The <strong>device</strong> and <strong>host</strong> execution space specifiers can be used together however, in which case the function is compiled for both the host and the device.</p>
-<details class="question" open="open"><summary>Question</summary><ul>
+<div class="admonition question">
+<p class="admonition-title">03. Question: host and device functions</p>
+<ul>
 <li>
 <p>Give an example of <code>global</code>, <code>device</code> and <code>host-device</code> functions in <code>CMSSW</code>.</p>
 </li>
@@ -652,9 +731,21 @@ A <strong>global</strong> function must have void return type, and cannot be a m
 <p>Can you find an example where <code>host</code> and <code>device</code> code diverge? How is this achieved?</p>
 </li>
 </ul>
-</details>
-<details class="answer"><summary>Answer</summary></details>
-<h2 id="execution-configuration">Execution Configuration</h2>
+<p><a href="../week01_exercises/#exercise_01_02">Go to exercise 01_02</a></p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">04. Exercise: Write a kernel in which</p>
+<ul>
+<li>
+<p>if we're running on the <code>device</code> each thread prints which <code>block</code> and <code>thread</code> it is associated with, for example <code>block 1 thread 3</code></p>
+</li>
+<li>
+<p>if we're running on the <code>host</code> each thread just prints <code>host</code>.</p>
+</li>
+</ul>
+<p><a href="../week01_exercises/#exercise_01_03">Go to exercise 01_03</a></p>
+</div>
+<h3 id="6-execution-configuration">6. Execution Configuration</h3>
 <p><a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#execution-configuration">From CUDA Toolkit Documentation: Execution Configuration</a></p>
 <p>Any call to a <strong>global</strong> function must specify the execution configuration for that call. The execution configuration defines the dimension of the grid and blocks that will be used to execute the function on the device, as well as the associated stream (see CUDA Runtime for a description of streams).</p>
 <p>The execution configuration is specified by inserting an expression of the form <code>&lt;&lt;&lt; Dg, Db, Ns, S &gt;&gt;&gt;</code> between the function name and the parenthesized argument list, where:</p>
@@ -672,11 +763,31 @@ A <strong>global</strong> function must have void return type, and cannot be a m
 <p><code>S</code> is of type <code>cudaStream_t</code> and specifies the associated stream; S is an optional argument which defaults to 0.</p>
 </li>
 </ul>
-<details class="tip"><summary>Other resources</summary><p><a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html</a></p>
-<p><a href="https://towardsdatascience.com/the-ai-illustrated-guide-why-are-gpus-so-powerful-99f4ae85a5c3">https://towardsdatascience.com/the-ai-illustrated-guide-why-are-gpus-so-powerful-99f4ae85a5c3</a></p>
-<p><a href="https://streamhpc.com/blog/2016-07-19/performance-can-be-measured-as-throughput-latency-or-processor-utilisation/">https://streamhpc.com/blog/2016-07-19/performance-can-be-measured-as-throughput-latency-or-processor-utilisation/</a></p>
-<p><a href="https://www.gamersnexus.net/dictionary/3-memory-interface">https://www.gamersnexus.net/dictionary/3-memory-interface</a></p>
+<h2 id="abstractions-granularity">Abstractions: Granularity</h2>
+<details class="abstract" open="open"><summary>Granularity</summary><p>If <img alt="T_comp" src="https://latex.codecogs.com/svg.image?T_{comp}" /> is the computation time and <img alt="T_comm" src="https://latex.codecogs.com/svg.image?T_{comm}" /> denotes the communication time, then the Granularity G of a task can be calculated as</p>
+<p><img alt="T_comp" src="https://latex.codecogs.com/svg.image?G=\frac{T_{comp}}{T_{comm}}" /></p>
+<p>Granularity is usually measured in terms of the number of instructions executed in a particular task.</p>
 </details>
+<details class="abstract" open="open"><summary>Fine-grained parallelism</summary><p>Fine-grained parallelism means individual tasks are relatively small in terms of code size and execution time. The data is transferred among processors frequently in amounts of one or a few memory words.</p>
+</details>
+<details class="abstract" open="open"><summary>Coarse-grained parallelism</summary><p>Coarse-grained is the opposite in the sense that data is communicated infrequently, after larger amounts of computation.</p>
+</details>
+<p><img alt="Fine-course grained parallelism" src="https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/gh-pages/img/w01_img02.png" /></p>
+<p>The CUDA abstractions provide fine-grained data parallelism and thread parallelism, nested within coarse-grained data parallelism and task parallelism. They guide the programmer to partition the problem into <strong>coarse sub-problems</strong> that can be solved independently in parallel by blocks of threads, and each sub-problem into <strong>finer pieces that can be solved cooperatively in parallel by all threads within the block</strong>.</p>
+<p>This decomposition preserves language expressivity by allowing threads to cooperate when solving each sub-problem, and at the same time enables automatic scalability.</p>
+<p>Indeed, each block of threads can be scheduled on any of the available multiprocessors within a GPU, in any order, concurrently or sequentially, so that a compiled CUDA program can execute on any number of multiprocessors.</p>
+<p><img alt="CUDA Automatic Scalability" src="https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/automatic-scalability.png" width="800" /></p>
+<div class="admonition warning">
+<p class="admonition-title">The following exercise requires knowledge about <em>barrier synchronization</em> and <em>shared memory</em>.</p>
+<p>Follow-up on <code>__syncthreads()</code> and <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#shared-memory">shared memory</a>.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">01. Question: Fine-grained vs coarse-grained parallelism</p>
+<ul>
+<li>Give examples in the <code>MatMulKernel</code> kernel of <strong>coarse-grained</strong> and <strong>fine-grained data parallelism</strong> (as defined in CUDA abstraction model) as well as sequential execution.</li>
+</ul>
+<p><a href="../week01_exercises/#exercise_01_04">Go to exercise 01_04</a></p>
+</div>
                 
               
             </article>
