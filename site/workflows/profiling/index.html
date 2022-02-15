@@ -38,6 +38,17 @@
     
       
 
+  
+
+
+  
+
+  
+
+
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-ZZ8D6PMHP5"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-ZZ8D6PMHP5",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ8D6PMHP5"></script>
+
 
     
     
@@ -178,7 +189,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../index.md" class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -271,8 +282,64 @@
   
   
     <li class="md-nav__item">
-      <a href="../../daily/day01-02/" class="md-nav__link">
+      <a href="../../weeks/week01/" class="md-nav__link">
         Week 01 - 2021.12.06-10.
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../weeks/week01_exercises/" class="md-nav__link">
+        Week 01 - Exercises
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../weeks/week02/" class="md-nav__link">
+        Week 02 - 2021.12.13-17.
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../weeks/week02_exercises/" class="md-nav__link">
+        Week 02 - Exercises
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../weeks/further_reading/" class="md-nav__link">
+        Further reading
       </a>
     </li>
   
@@ -340,29 +407,29 @@
                 
 <h1 id="profiling">Profiling</h1>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>Check activity on current GPU node:</p>
-<pre><code class="language-console">foo@bar~$ nvidia-smi
-Thu Oct 21 17:54:04 2021       
-+-----------------------------------------------------------------------------+
-| NVIDIA-SMI 470.57.02    Driver Version: 470.57.02    CUDA Version: 11.4     |
-|-------------------------------+----------------------+----------------------+
-| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-|                               |                      |               MIG M. |
-|===============================+======================+======================|
-|   0  Tesla T4            Off  | 00000000:5E:00.0 Off |                    0 |
-| N/A   41C    P0    26W /  70W |      0MiB / 15109MiB |      0%      Default |
-|                               |                      |                  N/A |
-+-------------------------------+----------------------+----------------------+
+<p>Check activity on current GPU node:
+<div class="highlight"><pre><span></span><code><span class="gp">foo@bar~$ </span>nvidia-smi
+<span class="go">Thu Oct 21 17:54:04 2021       </span>
+<span class="go">+-----------------------------------------------------------------------------+</span>
+<span class="go">| NVIDIA-SMI 470.57.02    Driver Version: 470.57.02    CUDA Version: 11.4     |</span>
+<span class="go">|-------------------------------+----------------------+----------------------+</span>
+<span class="go">| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |</span>
+<span class="go">| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |</span>
+<span class="go">|                               |                      |               MIG M. |</span>
+<span class="go">|===============================+======================+======================|</span>
+<span class="go">|   0  Tesla T4            Off  | 00000000:5E:00.0 Off |                    0 |</span>
+<span class="go">| N/A   41C    P0    26W /  70W |      0MiB / 15109MiB |      0%      Default |</span>
+<span class="go">|                               |                      |                  N/A |</span>
+<span class="go">+-------------------------------+----------------------+----------------------+</span>
 
-+-----------------------------------------------------------------------------+
-| Processes:                                                                  |
-|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
-|        ID   ID                                                   Usage      |
-|=============================================================================|
-|  No running processes found                                                 |
-+-----------------------------------------------------------------------------+
-</code></pre>
+<span class="go">+-----------------------------------------------------------------------------+</span>
+<span class="go">| Processes:                                                                  |</span>
+<span class="go">|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |</span>
+<span class="go">|        ID   ID                                                   Usage      |</span>
+<span class="go">|=============================================================================|</span>
+<span class="go">|  No running processes found                                                 |</span>
+<span class="go">+-----------------------------------------------------------------------------+</span>
+</code></pre></div></p>
 <h2 id="prepare-uncompressed-root-files">Prepare uncompressed ROOT files</h2>
 <p>It is not evident that reconstruction runs faster on uncompressed input files, it depends on whether our application is computation or memory bound.</p>
                 
@@ -395,7 +462,7 @@ Thu Oct 21 17:54:04 2021
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.01824240.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "content.tabs.link"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.01824240.min.js", "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.0d86bc28.min.js"></script>

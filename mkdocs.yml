@@ -1,20 +1,76 @@
 site_name: CMS Tracker DPG - knowledge transfer workshop
 nav:
   - Home: index.md
-  - Connecting to GPU machines:
+  - Getting-started:
     - getting-started/index.md
-  - Knowledge transfer material:
-    - daily/day01-02.md
-  #- GPU basics: learn-gpu-basics.md
-  #- Workflows and profilig:
-  #  - workflows/index.md
-  #  - Page 1: workflows/profiling.md
+    - getting-started/software.md
+    - getting-started/validation.md
+  - Documentation:
+    - documentation/gpuClustering.md
+    - documentation/gpuClustering02.md
+  - Archive:
+    - archive/index.md
+    # - weeks/week01.md
+    # - weeks/week01_exercises.md
+    # - weeks/week02.md
+    # - weeks/week02_exercises.md
+    # - weeks/further_reading.md
 theme:
   name: material
   features:
     - navigation.sections
+    - content.tabs.link
+  icon:
+    admonition:
+      note: fontawesome/solid/sticky-note
+      abstract: fontawesome/solid/book
+      info: fontawesome/solid/info-circle
+      tip: fontawesome/solid/bullhorn
+      success: fontawesome/solid/check
+      question: fontawesome/solid/question-circle
+      warning: fontawesome/solid/exclamation-triangle
+      failure: fontawesome/solid/bomb
+      danger: fontawesome/solid/skull
+      bug: fontawesome/solid/robot
+      example: fontawesome/solid/flask
+      quote: fontawesome/solid/quote-left
+
 markdown_extensions:
   - tables
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - attr_list
+  - md_in_html
+
+extra:
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+extra:
+  analytics:
+    provider: google
+    property: G-ZZ8D6PMHP5
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/heart
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/heart-broken
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback! Help us improve this page by
+            using our <a href="..." target=_blank>feedback form</a>.
