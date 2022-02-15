@@ -8,19 +8,19 @@
       
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.0b1">
     
     
       
-        <title>Connecting to GPU machines - CMS Tracker DPG - knowledge transfer workshop</title>
+        <title>General CMSSW developer guide - CMS Tracker DPG - knowledge transfer workshop</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.450eaa28.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.450eaa28.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.9204c3b2.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.9204c3b2.min.css">
         
       
     
@@ -34,7 +34,7 @@
       
     
     
-    <script>function __md_scope(e,t,_){return new URL(_||(t===localStorage?"..":".."),location).pathname+"."+e}function __md_get(e,t=localStorage,_){return JSON.parse(t.getItem(__md_scope(e,t,_)))}function __md_set(e,t,_=localStorage,o){try{_.setItem(__md_scope(e,_,o),JSON.stringify(t))}catch(e){}}</script>
+    <script>function __md_scope(e,t,_){return new URL(_||(t===localStorage?"../..":"../.."),location).pathname+"."+e}function __md_get(e,t=localStorage,_){return JSON.parse(t.getItem(__md_scope(e,t,_)))}function __md_set(e,t,_=localStorage,o){try{_.setItem(__md_scope(e,_,o),JSON.stringify(t))}catch(e){}}</script>
     
       
 
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#connecting-to-gpu-machines" class="md-skip">
+        <a href="#general-cmssw-developer-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -84,7 +84,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="CMS Tracker DPG - knowledge transfer workshop" class="md-header__button md-logo" aria-label="CMS Tracker DPG - knowledge transfer workshop" data-md-component="logo">
+    <a href="../.." title="CMS Tracker DPG - knowledge transfer workshop" class="md-header__button md-logo" aria-label="CMS Tracker DPG - knowledge transfer workshop" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Connecting to GPU machines
+              General CMSSW developer guide
             
           </span>
         </div>
@@ -170,7 +170,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="CMS Tracker DPG - knowledge transfer workshop" class="md-nav__button md-logo" aria-label="CMS Tracker DPG - knowledge transfer workshop" data-md-component="logo">
+    <a href="../.." title="CMS Tracker DPG - knowledge transfer workshop" class="md-nav__button md-logo" aria-label="CMS Tracker DPG - knowledge transfer workshop" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -189,7 +189,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -232,6 +232,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Connecting to GPU machines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -244,12 +258,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Connecting to GPU machines
+          General CMSSW developer guide
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Connecting to GPU machines
+        General CMSSW developer guide
       </a>
       
         
@@ -268,44 +282,58 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
+  <a href="#tutorial-proposing-changes-to-cmssw" class="md-nav__link">
+    Tutorial: proposing changes to CMSSW
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#access-machines-at-cern" class="md-nav__link">
-    Access machines at CERN
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#access-machines-at-cms-p5" class="md-nav__link">
-    Access machines at CMS P5
-  </a>
-  
-    <nav class="md-nav" aria-label="Access machines at CMS P5">
+    <nav class="md-nav" aria-label="Tutorial: proposing changes to CMSSW">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dedicated-machines-for-the-development-of-the-online-reconstruction" class="md-nav__link">
-    Dedicated machines for the development of the online reconstruction
+  <a href="#before-you-start" class="md-nav__link">
+    Before you start
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#all-machines-are-equipped-with" class="md-nav__link">
-    All machines are equipped with
+  <a href="#search-for-available-releases" class="md-nav__link">
+    Search for available releases
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#how-to-connect" class="md-nav__link">
-    How to connect
+  <a href="#create-a-cmssw-area" class="md-nav__link">
+    Create a CMSSW area
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init-git-area" class="md-nav__link">
+    init git area
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkout-a-few-packages-using-git-cms-addpkg" class="md-nav__link">
+    Checkout a few packages using git cms-addpkg
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-release" class="md-nav__link">
+    Build release
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#before-making-a-pr" class="md-nav__link">
+    Before making a PR
   </a>
   
 </li>
@@ -316,56 +344,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#miscellaneous-or-special-gpu-nodes" class="md-nav__link">
-    Miscellaneous - or special GPU nodes
+  <a href="#build-types" class="md-nav__link">
+    Build types:
   </a>
-  
-    <nav class="md-nav" aria-label="Miscellaneous - or special GPU nodes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cmg-gpu1080" class="md-nav__link">
-    cmg-gpu1080
-  </a>
-  
-    <nav class="md-nav" aria-label="cmg-gpu1080">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#system-information" class="md-nav__link">
-    System information
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#getting-access-to-the-machine" class="md-nav__link">
-    Getting access to the machine
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#usage-policy" class="md-nav__link">
-    Usage Policy
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#usage-for-ml-studies" class="md-nav__link">
-    Usage for ML studies
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -384,21 +365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="software/" class="md-nav__link">
-        General CMSSW developer guide
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="validation/" class="md-nav__link">
+      <a href="../validation/" class="md-nav__link">
         Workflows
       </a>
     </li>
@@ -448,7 +415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../documentation/gpuClustering/" class="md-nav__link">
+      <a href="../../documentation/gpuClustering/" class="md-nav__link">
         gpuClustering.h - findClus
       </a>
     </li>
@@ -462,7 +429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../documentation/gpuClustering02/" class="md-nav__link">
+      <a href="../../documentation/gpuClustering02/" class="md-nav__link">
         gpuClustering.h - countModules
       </a>
     </li>
@@ -512,7 +479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../archive/" class="md-nav__link">
+      <a href="../../archive/" class="md-nav__link">
         Archived resources
       </a>
     </li>
@@ -553,44 +520,58 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
+  <a href="#tutorial-proposing-changes-to-cmssw" class="md-nav__link">
+    Tutorial: proposing changes to CMSSW
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#access-machines-at-cern" class="md-nav__link">
-    Access machines at CERN
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#access-machines-at-cms-p5" class="md-nav__link">
-    Access machines at CMS P5
-  </a>
-  
-    <nav class="md-nav" aria-label="Access machines at CMS P5">
+    <nav class="md-nav" aria-label="Tutorial: proposing changes to CMSSW">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dedicated-machines-for-the-development-of-the-online-reconstruction" class="md-nav__link">
-    Dedicated machines for the development of the online reconstruction
+  <a href="#before-you-start" class="md-nav__link">
+    Before you start
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#all-machines-are-equipped-with" class="md-nav__link">
-    All machines are equipped with
+  <a href="#search-for-available-releases" class="md-nav__link">
+    Search for available releases
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#how-to-connect" class="md-nav__link">
-    How to connect
+  <a href="#create-a-cmssw-area" class="md-nav__link">
+    Create a CMSSW area
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init-git-area" class="md-nav__link">
+    init git area
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkout-a-few-packages-using-git-cms-addpkg" class="md-nav__link">
+    Checkout a few packages using git cms-addpkg
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-release" class="md-nav__link">
+    Build release
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#before-making-a-pr" class="md-nav__link">
+    Before making a PR
   </a>
   
 </li>
@@ -601,56 +582,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#miscellaneous-or-special-gpu-nodes" class="md-nav__link">
-    Miscellaneous - or special GPU nodes
+  <a href="#build-types" class="md-nav__link">
+    Build types:
   </a>
-  
-    <nav class="md-nav" aria-label="Miscellaneous - or special GPU nodes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cmg-gpu1080" class="md-nav__link">
-    cmg-gpu1080
-  </a>
-  
-    <nav class="md-nav" aria-label="cmg-gpu1080">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#system-information" class="md-nav__link">
-    System information
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#getting-access-to-the-machine" class="md-nav__link">
-    Getting access to the machine
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#usage-policy" class="md-nav__link">
-    Usage Policy
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#usage-for-ml-studies" class="md-nav__link">
-    Usage for ML studies
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -667,65 +601,127 @@
               
                 
                 
-<h1 id="connecting-to-gpu-machines">Connecting to GPU machines</h1>
-<p>A step-by-step guide on how to access GPU equipped machines at CERN, CMS or how to develop on your machine.</p>
-<h2 id="prerequisites">Prerequisites</h2>
+<h1 id="general-cmssw-developer-guide">General CMSSW developer guide</h1>
+<h2 id="tutorial-proposing-changes-to-cmssw">Tutorial: proposing changes to CMSSW</h2>
+<p><strong>Based on <a href="http://cms-sw.github.io/tutorial.html">http://cms-sw.github.io/tutorial.html</a></strong></p>
+<h3 id="before-you-start">Before you start</h3>
+<p>Please make sure you registered to GitHub and that you have provided them a ssh public key to access your private repository.</p>
+<h3 id="search-for-available-releases">Search for available releases</h3>
+<p>Before setting up a release search for available ones:</p>
+<div class="highlight"><pre><span></span><code>scram list CMSSW
+</code></pre></div>
+<p>This should result in some output like:
+<div class="highlight"><pre><span></span><code>Listing installed projects available for platform &gt;&gt; slc7_amd64_gcc10 &lt;&lt;
+
+--------------------------------------------------------------------------------
+| Project Name  | Project Version          | Project Location                  |
+--------------------------------------------------------------------------------
+
+  CMSSW           CMSSW_12_0_0_pre3          
+                                         --&gt; /cvmfs/cms.cern.ch/slc7_amd64_gcc10/cms/cmssw/CMSSW_12_0_0_pre3
+  CMSSW           CMSSW_12_0_0_pre4          
+                                         --&gt; /cvmfs/cms.cern.ch/slc7_amd64_gcc10/cms/cmssw/CMSSW_12_0_0_pre4
+  CMSSW           CMSSW_12_0_0_pre5          
+                                         --&gt; /cvmfs/cms.cern.ch/slc7_amd64_gcc10/cms/cmssw/CMSSW_12_0_0_pre5
+...
+  CMSSW           CMSSW_12_3_DBG_X_2022-02-10-2300  
+                                         --&gt; /cvmfs/cms-ib.cern.ch/week1/slc7_amd64_gcc10/cms/cmssw/CMSSW_12_3_DBG_X_2022-02-10-2300
+  CMSSW           CMSSW_12_3_SKYLAKEAVX512_X_2022-02-10-2300  
+                                         --&gt; /cvmfs/cms-ib.cern.ch/week1/slc7_amd64_gcc10/cms/cmssw/CMSSW_12_3_SKYLAKEAVX512_X_2022-02-10-2300
+  CMSSW           CMSSW_12_3_X_2022-02-11-1100  
+                                         --&gt; /cvmfs/cms-ib.cern.ch/week1/slc7_amd64_gcc10/cms/cmssw-patch/CMSSW_12_3_X_2022-02-11-1100
+</code></pre></div></p>
+<h3 id="create-a-cmssw-area">Create a CMSSW area</h3>
+<p>Set up the work area just like you used to.</p>
+<div class="highlight"><pre><span></span><code>cmsrel CMSSW_12_3_X_2022-02-11-1100
+<span class="nb">cd</span> CMSSW_12_3_X_2022-02-11-1100/src
+cmsenv
+</code></pre></div>
+<h3 id="init-git-area">init git area</h3>
+<div class="highlight"><pre><span></span><code>git cms-init --upstream-only
+</code></pre></div>
+<h3 id="checkout-a-few-packages-using-git-cms-addpkg">Checkout a few packages using git cms-addpkg</h3>
+<p>Some useful packages for developing the <em>pixel local reconstruction in CUDA</em>:</p>
+<div class="highlight"><pre><span></span><code>CUDADataFormats/SiPixelCluster/
+CUDADataFormats/SiPixelDigi/
+RecoLocalTracker/SiPixelClusterizer/
+</code></pre></div>
+<p>You can add these packages with <strong>cms-addpkg</strong>:</p>
+<p>(You need to be in the <code>CMSSW_12_3_X_2022-02-11-1100/src</code> repository)</p>
+<div class="highlight"><pre><span></span><code>git cms-addpkg CUDADataFormats/SiPixelCluster/
+git cms-addpkg CUDADataFormats/SiPixelDigi/
+git cms-addpkg RecoLocalTracker/SiPixelClusterizer/
+</code></pre></div>
+<p>See the checked out packages in <code>.git/info/sparse-checkout</code></p>
+<div class="highlight"><span class="filename">Output of cat .git/info/sparse-checkout</span><pre><span></span><code>/.clang-format
+/.clang-tidy
+/.gitignore
+/CUDADataFormats/SiPixelCluster/
+/CUDADataFormats/SiPixelDigi/
+/RecoLocalTracker/SiPixelClusterizer/
+</code></pre></div>
+<p>Only build the desired packages, <strong>add/remove</strong> unwanted ones:<br />
+<a href="http://cms-sw.github.io/git-cms-addpkg.html">http://cms-sw.github.io/git-cms-addpkg.html</a></p>
+<p><strong>Fetch updates from remote</strong>
+<div class="highlight"><pre><span></span><code>git checkout master
+git fetch <span class="o">[</span>official-cmssw<span class="o">]</span>
+git merge official-cmssw/master master
+</code></pre></div></p>
+<p>Where <em>official-cmssw</em> is the remote name configured for <a href="https://github.com/cms-sw/cmssw">the CMSSW offline software repository</a>.</p>
+<p>You can list your remote repositories with (for even more verbose output, you can stack the v-s):
+<div class="highlight"><pre><span></span><code>git remote -v
+</code></pre></div></p>
+<p><strong>Conflict after PR</strong><br />
+To resolve a conflict that appeared after proposing the changes in a PR, one should prefer <strong>rebase</strong> to <strong>merge</strong> as it keeps the commit history clean.</p>
+<p>For a rebase, do:</p>
+<div class="highlight"><pre><span></span><code>git checkout &lt;development_branch_name&gt;
+git fetch
+git rebase -i &lt;CMSSW_current_release&gt;
+</code></pre></div>
+<p>It might be, that the tags for branches are only considered for your <strong>default remote</strong>, eg. my-cmssw, but the current release of CMSSW is not included in that. To resolve this, you can also try specifying the remote for the <strong>official cmssw</strong> (which is not a fork):</p>
+<div class="highlight"><pre><span></span><code>git rebase -i &lt;official_cmssw_name&gt;/&lt;CMSSW_current_release&gt;
+</code></pre></div>
+<h3 id="build-release">Build release</h3>
+<div class="highlight"><pre><span></span><code>scram b -j
+</code></pre></div>
+<p>Doing a <code>DEBUG</code> build for <code>GPU</code> development:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">USER_CXXFLAGS</span><span class="o">=</span><span class="s2">&quot;-g -DGPU_DEBUG -DEDM_ML_DEBUG&quot;</span> scram b -j
+</code></pre></div>
+<p>If your debug build is not working, you might need to clean your development area:
+<div class="highlight"><pre><span></span><code>scram b clean
+</code></pre></div></p>
+<h3 id="before-making-a-pr">Before making a PR</h3>
+<div class="highlight"><pre><span></span><code>scram b code-format <span class="c1"># run clang-format</span>
+scram b code-checks <span class="c1"># run clang-tidy</span>
+</code></pre></div>
+<h2 id="build-types">Build types:</h2>
 <ol>
-<li>CERN computing account</li>
+<li>Stable and pre-releases</li>
 </ol>
-<h2 id="access-machines-at-cern">Access machines at CERN</h2>
-<p>See the <a href="https://clouddocs.web.cern.ch/gpu/README.html">CERN cloud insfrastructure resources guide</a> on how to request GPU resources.</p>
+<p>Find out what's new in a particular release: <a href="https://cmssdt.cern.ch/SDT/ReleaseNotes/index.html">https://cmssdt.cern.ch/SDT/ReleaseNotes/index.html</a>.</p>
+<p>For example for </p>
+<p>CMSSW_12_3_0_pre2
+Changes since CMSSW_12_3_0_pre1:</p>
+<p><a href="https://github.com/cms-sw/cmssw/compare/CMSSW_12_3_0_pre1...CMSSW_12_3_0_pre2">compare to previous</a></p>
+<p><a href="http://github.com/cms-sw/cmssw/pull/36515">36515</a> from <strong>@cms-tsg-storm:</strong> Revert EI removal in TSG tests <code>hlt</code> created: 2021-12-16 07:48:39 merged: 2021-12-16 09:48:40</p>
+<p><a href="http://github.com/cms-sw/cmssw/pull/36506">36506</a> from <strong>@bsunanda:</strong> Run3-TB64 Make some simple changes to the classes in SimG4CMS/HcalTestBeam <code>simulation</code> created: 2021-12-15 15:29:55 merged: 2021-12-16 07:05:18</p>
+<p><a href="http://github.com/cms-sw/cmssw/pull/36505">36505</a> from <strong>@kpedro88:</strong> restrict number of events for 0T PU workflows <code>pdmv</code> <code>upgrade</code> created: 2021-12-15 10:28:32 merged: 2021-12-15 14:50:12</p>
+<p>etc.</p>
+<p><a href="https://cmssdt.cern.ch/SDT/ReleaseNotes/CMSSW_12/CMSSW_12_3_0_pre2.html">https://cmssdt.cern.ch/SDT/ReleaseNotes/CMSSW_12/CMSSW_12_3_0_pre2.html</a></p>
 <ol>
-<li>lxplus</li>
+<li>Integration builds</li>
 </ol>
-<p>The lxplus service offers <code>lxplus-gpu.cern.ch</code> for shared GPU instances - with limited isolation and performance.</p>
-<p>One can connect similary as would do to the <code>lxplus.cern.ch</code> host domain.</p>
-<pre><code>ssh &lt;username&gt;@lxplus-gpu.cern.ch [-X]
-</code></pre>
-<h2 id="access-machines-at-cms-p5">Access machines at CMS P5</h2>
-<p>This section is taken from the <a href="https://twiki.cern.ch/twiki/bin/viewauth/CMS/TriggerDevelopmentWithGPUs">CMS TWiki TriggerDevelopmentWithGPUs</a> page.</p>
-<h3 id="dedicated-machines-for-the-development-of-the-online-reconstruction">Dedicated machines for the development of the online reconstruction</h3>
-<p>There are 6 machines available for general development and validation of the online reconstruction on GPUs:</p>
+<p>Browse available integration builds, profiling and other test results: <a href="https://cmssdt.cern.ch/SDT/html/cmssdt-ib/">https://cmssdt.cern.ch/SDT/html/cmssdt-ib/</a>.</p>
+<p>Important features include the ability to filter <code>IBs</code> based on</p>
 <ul>
-<li><strong><code>gpu-c2a02-37-03.cms</code></strong></li>
-<li><strong><code>gpu-c2a02-37-04.cms</code></strong></li>
-<li><strong><code>gpu-c2a02-39-01.cms</code></strong></li>
-<li><strong><code>gpu-c2a02-39-02.cms</code></strong></li>
-<li><strong><code>gpu-c2a02-39-03.cms</code></strong></li>
-<li><strong><code>gpu-c2a02-39-04.cms</code></strong></li>
+<li>Flavor</li>
+<li>OS</li>
+<li>CPU architecture</li>
+<li>Compiler</li>
 </ul>
-<h3 id="all-machines-are-equipped-with">All machines are equipped with</h3>
-<ul>
-<li>two <a href="https://ark.intel.com/content/www/us/en/ark/products/120492/intel-xeon-gold-6130-processor-22m-cache-2-10-ghz.html">Intel "Skylake" Xeon Gold 6130<img alt="" src="https://twiki.cern.ch/twiki/pub/TWiki/TWikiDocGraphics/external-link.gif" /></a> processors (for a total of 2x16=32 physical cores and 2x2x16 = 64 logical cores or hardware threads);</li>
-<li>96 GB of RAM;</li>
-<li>one <a href="https://www.nvidia.com/en-us/data-center/tesla-t4/">NVIDIA Tesla T4<img alt="" src="https://twiki.cern.ch/twiki/pub/TWiki/TWikiDocGraphics/external-link.gif" /></a> GPU.</li>
-</ul>
-<h3 id="how-to-connect">How to connect</h3>
-<p>To connect to these machines you need to have an online account and be in the <strong><code>gpudev</code></strong> group.</p>
-<p>To request access, please subscribe to the <a href="mailto:cms-hlt-gpu@cern.ch">cms-hlt-gpu@cern.ch</a> e-group and send an email to <a href="mailto:andrea.bocci@cern.ch">andrea.bocci@cern.ch</a>, indicating</p>
-<ul>
-<li>whether you already have an online account;</li>
-<li>your online or lxplus username;</li>
-<li>your full name and email.</li>
-</ul>
-<h2 id="miscellaneous-or-special-gpu-nodes">Miscellaneous - or special GPU nodes</h2>
-<p>This section is more or less taken from the <a href="https://patatrack.web.cern.ch/patatrack/private/systems/cmg-gpu1080.html">Patatrack website systems</a> subpage.</p>
-<h3 id="cmg-gpu1080">cmg-gpu1080</h3>
-<h4 id="system-information">System information</h4>
-<p><a href="https://fpantale.web.cern.ch/fpantale/out.pdf">Topology of the machine</a></p>
-<h4 id="getting-access-to-the-machine">Getting access to the machine</h4>
-<p>In order to get access to the machine you should send a request to subscribe to the CERN e-group: cms-gpu You should also send an email to <a href="mailto:felice.pantaleo@cern.ch">Felice Pantaleo</a> motivating the reason for the requested access.</p>
-<h4 id="usage-policy">Usage Policy</h4>
-<p>Normally, no more than 1 GPU per users should be used. To limit visible devices use</p>
-<pre><code>export CUDA_VISIBLE_DEVICES=&lt;list of numbers&gt;
-</code></pre>
-<p>Where <code>&lt;list of numbers&gt;</code> can be e.g. <code>0</code>, <code>0,4</code>, <code>1,2,3</code>. Use <code>nvidia-smi</code> to check available resources.</p>
-<h4 id="usage-for-ml-studies">Usage for ML studies</h4>
-<p>If you need to use the machine for training DNNs you could accidentally occupy all the GPUs, making them unavailable for other users.</p>
-<p>For this reason you're kindly asked to use</p>
-<p><code>import setGPU</code></p>
-<p>before any import that will use a GPU (e.g. tensorflow). This will assign to you the least loaded GPU on the system.</p>
-<p>It is strictly forbidden to use GPUs from within your jupyter notebook. Please export your notebook to a python program and execute it. The access to the machine will be revoked when failing to comply to this rule.</p>
+<p><img alt="img01" src="../../img/other/n11.png" /></p>
+<p>Look at latest commits, PRs added for a particluar build</p>
+<p><img alt="img02" src="../../img/other/n12.png" /></p>
                 
               
             </article>
@@ -739,7 +735,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Connecting to GPU machines" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -748,20 +744,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Home
+              Connecting to GPU machines
             </div>
           </div>
         </a>
       
       
         
-        <a href="software/" class="md-footer__link md-footer__link--next" aria-label="Next: General CMSSW developer guide" rel="next">
+        <a href="../validation/" class="md-footer__link md-footer__link--next" aria-label="Next: Workflows" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              General CMSSW developer guide
+              Workflows
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -791,10 +787,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "content.tabs.link"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.01824240.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "content.tabs.link"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.01824240.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.0d86bc28.min.js"></script>
+      <script src="../../assets/javascripts/bundle.0d86bc28.min.js"></script>
       
     
   </body>
