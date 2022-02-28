@@ -1,0 +1,1056 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.0b1">
+    
+    
+      
+        <title>gpuClustering.h - findClus - CMS Tracker DPG - knowledge transfer workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.450eaa28.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.9204c3b2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>function __md_scope(e,t,_){return new URL(_||(t===localStorage?"../..":"../.."),location).pathname+"."+e}function __md_get(e,t=localStorage,_){return JSON.parse(t.getItem(__md_scope(e,t,_)))}function __md_set(e,t,_=localStorage,o){try{_.setItem(__md_scope(e,_,o),JSON.stringify(t))}catch(e){}}</script>
+    
+      
+
+  
+
+
+  
+
+  
+
+
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-ZZ8D6PMHP5"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-ZZ8D6PMHP5",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ8D6PMHP5"></script>
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gpuclusteringh-findclus" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CMS Tracker DPG - knowledge transfer workshop" class="md-header__button md-logo" aria-label="CMS Tracker DPG - knowledge transfer workshop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CMS Tracker DPG - knowledge transfer workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              gpuClustering.h - findClus
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CMS Tracker DPG - knowledge transfer workshop" class="md-nav__button md-logo" aria-label="CMS Tracker DPG - knowledge transfer workshop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    CMS Tracker DPG - knowledge transfer workshop
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting-started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting-started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting-started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        Connecting to GPU machines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/software/" class="md-nav__link">
+        General CMSSW developer guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/validation/" class="md-nav__link">
+        Workflows
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Documentation" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Documentation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          gpuClustering.h - findClus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        gpuClustering.h - findClus
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nearest-neighbours-and-counting-them" class="md-nav__link">
+    Nearest neighbours and counting them
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filling-nn" class="md-nav__link">
+    Filling nn
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assign-same-clusterid-to-clusters" class="md-nav__link">
+    Assign same clusterId to clusters
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gpuClustering02/" class="md-nav__link">
+        gpuClustering.h - countModules
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Archive
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Archive" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Archive
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/" class="md-nav__link">
+        Archived resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nearest-neighbours-and-counting-them" class="md-nav__link">
+    Nearest neighbours and counting them
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filling-nn" class="md-nav__link">
+    Filling nn
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assign-same-clusterid-to-clusters" class="md-nav__link">
+    Assign same clusterId to clusters
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+<h1 id="gpuclusteringh-findclus">gpuClustering.h - findClus</h1>
+<p>Let's look at the histogram filling without the debug messages which we might explain later.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// fill histo</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">msize</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nb">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">invalidModuleId</span><span class="p">)</span><span class="w">  </span><span class="c1">// skip invalid pixels</span>
+<span class="w">    </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">hist</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="nf">__syncthreads</span><span class="p">();</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">32</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">ws</span><span class="p">[</span><span class="nb">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// used by prefix scan...</span>
+<span class="nf">__syncthreads</span><span class="p">();</span><span class="w"></span>
+<span class="n">hist</span><span class="p">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">ws</span><span class="p">);</span><span class="w"></span>
+<span class="nf">__syncthreads</span><span class="p">();</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">msize</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nb">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">invalidModuleId</span><span class="p">)</span><span class="w">  </span><span class="c1">// skip invalid pixels</span>
+<span class="w">    </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">hist</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">firstPixel</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Competitive filling</p>
+<p>We will fill our histogram <code>hist</code> with the values <code>i-firstPixel</code>. We make sure that each pixel get's in the right bin, corresponding to their column in the module map.</p>
+<div class="highlight"><pre><span></span><code><span class="n">hist</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">firstPixel</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<p>Here as we know, <code>y</code> is the column value array of the digis. </p>
+<p>If we iterate through the histogram, pixels in the first column will be processed sooner to pixels in the next column, and so on.</p>
+<p>What we don't know however is what order we are going to process our pixels in one column/bin.
+Filling the histogram is competitive between the threads, the following image illustrates this.</p>
+</div>
+<p><img alt="Iteration order of pixels in cluster" src="../../img/documentation/m0.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">Figure 1 - Order in histogram</p>
+<p>Not to misunderstand, we don't fill our histogram in this order, this is the iteration order of <code>cms::cuda::HistoContainer</code>.</p>
+<p>This iteration order can change, and most probably will change from reconstruction to reconstruction.</p>
+</div>
+<p>We see the relative positions of pixels in our cluster:</p>
+<p><img alt="Iteration order of pixels in cluster" src="../../img/documentation/m1.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">Figure 2 - Our HistoContainer</p>
+<p>Our ordering will be defined as top to bottom inside bins and left to right between bins.</p>
+<p>At least for this example, it doesn't really matter if one imagines the order in one bin the other way around.</p>
+</div>
+<p><img alt="Id/position stored in histogram visualized" src="../../img/documentation/m2.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">Figure 3 - What we store in the HistoContainer</p>
+<p>On the left, we see how we will later iterate through the histogram.</p>
+<p>In the middle and on the right we see what we are actually storing in the histogram.</p>
+<p>We are storing <code>i-firstPixel</code>. This is the <strong>relative position of our digis in the digi view/array</strong>.</p>
+<p>We don't need all data about digis stored there, just their position in the <code>digi array</code> or <code>digi view</code>.</p>
+<p>Actually, not even that. We only need their <strong>relative position</strong> and not the <strong>absolute</strong>. That is because all digis belonging to the same module are <strong>consecutive in the digi array</strong>.</p>
+<p>This way we can save precious space, because we would need <code>32 bits</code> to store the absolute position of a digi, however, this way we can use only <code>16 bits</code>.</p>
+<p>Hmm, <code>16 bits</code> means <code>2^16 = 65536</code> maximum possible relative positions. </p>
+<p>How do we know there are no more digis in the module?</p>
+<p>On one hand, it is very unlikely, since in <code>phase 1</code> our module dimensions are <code>80*2*52*8 = 66560</code>.</p>
+<p>Module occupancy is much lower than <code>0.98</code> in any layer, so we're good.</p>
+<p>Still, we're making constraints on the maximum number of digis in the mdodule. </p>
+<p>Currently, this is </p>
+<div class="highlight"><pre><span></span><code><span class="c1">//6000 max pixels required for HI operations with no measurable impact on pp performance</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">maxPixInModule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6000</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<p>We actually don't use this here. We will use this for something else, namely iterating through the digis in the module. Why we will need this will be uncovered soon.</p>
+</div>
+<p>This example only contained one cluster, but in reality we will likely have some consecutive clusters. </p>
+<p><img alt="Iteration order of pixels in cluster" src="../../img/documentation/m3.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">Figure 4 - Multiple clusters in one module</p>
+<p>Again, in reality our cluster will be more spread out, we are only drawing them this close together for the sake of the example.</p>
+<p>Adding multiple clusters to the game the iteration order will change.</p>
+</div>
+<h2 id="nearest-neighbours-and-counting-them">Nearest neighbours and counting them</h2>
+<p>A crucial part of the code is the following:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// allocate space for duplicate pixels: a pixel can appear more than once</span>
+<span class="c1">// with different charge in the same event</span>
+<span class="n">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">maxNeighbours</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="n">assert</span><span class="p">((</span><span class="n">hist</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">maxiter</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// nearest neighbour</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">nn</span><span class="p">[</span><span class="n">maxiter</span><span class="p">][</span><span class="n">maxNeighbours</span><span class="p">];</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">nnn</span><span class="p">[</span><span class="n">maxiter</span><span class="p">];</span><span class="w">  </span><span class="c1">// number of nn</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">maxiter</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">k</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">nnn</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="nf">__syncthreads</span><span class="p">();</span><span class="w">  </span><span class="c1">// for hit filling!</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">nn or nearest neighbours</p>
+<p>We want to store the relative position of the nearest neighbours of every digi. <strong>Basically, that's why we created the histogram in the first place.</strong> With the histogram the job is half-done, we know the neighbours of every digi columnwise.</p>
+<p>We will create local arrays to store the neighbours.</p>
+<p>We consider neighbours to be <strong>8-connected</strong>.</p>
+<p><img alt="4-8-connected-image" src="https://sites.ualberta.ca/~ccwj/teaching/image/morph/Figs/PNG/connectivity.png" /></p>
+<p>This would max out the number of possible neighbours to be, well, 8. But as the comment above (and below) explains, due to some read-out inconsistencies or whatnot we can have duplicate digis. So we allocate some extra space for them, but we'll also use some <code>assertions</code> later on to make sure we don't exceed our self-made limit.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// allocate space for duplicate pixels: a pixel can appear more than once</span>
+<span class="c1">// with different charge in the same event</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">maxNeighbours</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">How many digis?</p>
+<p>We finally get to answer why we have an upper limit on the number of digis that we get to check rigorously in our kernel.</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1">//6000 max pixels required for HI operations with no measurable impact on pp performance</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">maxPixInModule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6000</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+It is connected to this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">assert</span><span class="p">((</span><span class="n">hist</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">maxiter</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<p>We want to store nearest neighbours for every digi/pixel, but we don't know in advance how many there are. But we do need to fix the number of threads in advance, that is compile time constant.</p>
+<p><code>nn</code> is thread local, so what we will do, is make it two dimensional and let the threads iterate through the module digis, always increasing the <code>position</code> by <code>blockDim.x</code>, and store nearest neighbours of the next digi in the next row of the <code>nn</code> array.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// nearest neighbour</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">nn</span><span class="p">[</span><span class="n">maxiter</span><span class="p">][</span><span class="n">maxNeighbours</span><span class="p">];</span><span class="w"></span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">nnn</span><span class="p">[</span><span class="n">maxiter</span><span class="p">];</span><span class="w">  </span><span class="c1">// number of nn</span>
+</code></pre></div>
+<p>For example, if <code>blockDim.x = 16</code> and we have <code>120</code> digis/hits in our event, then <code>thread 3</code> will process the following digis:</p>
+<table>
+<thead>
+<tr>
+<th>digi id</th>
+<th></th>
+<th>nn place</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>-&gt;</td>
+<td>nn[0]</td>
+</tr>
+<tr>
+<td>19</td>
+<td>-&gt;</td>
+<td>nn[1]</td>
+</tr>
+<tr>
+<td>35</td>
+<td>-&gt;</td>
+<td>nn[2]</td>
+</tr>
+<tr>
+<td>51</td>
+<td>-&gt;</td>
+<td>nn[3]</td>
+</tr>
+<tr>
+<td>67</td>
+<td>-&gt;</td>
+<td>nn[4]</td>
+</tr>
+<tr>
+<td>83</td>
+<td>-&gt;</td>
+<td>nn[5]</td>
+</tr>
+<tr>
+<td>99</td>
+<td>-&gt;</td>
+<td>nn[6]</td>
+</tr>
+<tr>
+<td>115</td>
+<td>-&gt;</td>
+<td>nn[7]</td>
+</tr>
+</tbody>
+</table>
+<p>We must decide  (or do we) the size of <code>nn</code> in compile time too, so that's why we have <code>maxiter</code> and this dangereous looking message:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#ifdef __CUDA_ARCH__</span>
+<span class="c1">// assume that we can cover the whole module with up to 16 blockDim.x-wide iterations</span>
+<span class="n">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">maxiter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">hist</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">maxiter</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;THIS IS NOT SUPPOSED TO HAPPEN too many hits in module %d: %d for block size %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">         </span><span class="n">thisModuleId</span><span class="p">,</span><span class="w"></span>
+<span class="w">         </span><span class="n">hist</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w"></span>
+<span class="w">         </span><span class="nb">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="cp">#else</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">maxiter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hist</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"></span>
+<span class="cp">#endif</span>
+</code></pre></div>
+<p>It really isn't supposed to happen. Why?</p>
+<details class="question"><summary>Why? What would happen in our code if this were true?</summary><div class="highlight"><pre><span></span><code><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">hist</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">maxiter</span><span class="w"></span>
+</code></pre></div>
+<p>Let's say <code>hist.size() = 300</code>.</p>
+<p>Well, then <code>thread 3</code> would try to put the nearest neighbours of the following digis in the following non-existing places:</p>
+<table>
+<thead>
+<tr>
+<th>digi id</th>
+<th></th>
+<th>nn place</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>259</td>
+<td>-&gt;</td>
+<td><img alt="☠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2620.svg" title=":skull_and_crossbones:" /> nn[16] <img alt="☠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2620.svg" title=":skull_and_crossbones:" /></td>
+</tr>
+<tr>
+<td>275</td>
+<td>-&gt;</td>
+<td><img alt="☠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2620.svg" title=":skull_and_crossbones:" /> nn[17] <img alt="☠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2620.svg" title=":skull_and_crossbones:" /></td>
+</tr>
+<tr>
+<td>291</td>
+<td>-&gt;</td>
+<td><img alt="☠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2620.svg" title=":skull_and_crossbones:" /> nn[18] <img alt="☠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2620.svg" title=":skull_and_crossbones:" /></td>
+</tr>
+</tbody>
+</table>
+<p>We really don't want to have out of bounds indexing errors. It could happen in theory, that's why we run simulations and try to find out are expected (max) occupancy in advance and set <strong><code>maxiter</code></strong> accordingly.</p>
+</details>
+</div>
+<div class="admonition info">
+<p class="admonition-title">nnn or number of nearest neighbours</p>
+<p>We will keep track of the number of nearest neighbours as well in a separate array.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">uint8_t</span><span class="w"> </span><span class="n">nnn</span><span class="p">[</span><span class="n">maxiter</span><span class="p">];</span><span class="w">  </span><span class="c1">// number of nn</span>
+</code></pre></div>
+<p>We could actually get rid of this and follow a different approach, can you find out how?</p>
+<details class="question"><summary>How?</summary><details class="question"><summary>No, but really, think about it</summary><details class="question"><summary>I'm serious</summary><p>Ok, well. Technically, when you create <code>nn</code></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// nearest neighbour</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">nn</span><span class="p">[</span><span class="n">maxiter</span><span class="p">][</span><span class="n">maxNeighbours</span><span class="p">];</span><span class="w"></span>
+</code></pre></div>
+<p>You could do this:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// nearest neighbour</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">nn</span><span class="p">[</span><span class="n">maxiter</span><span class="p">][</span><span class="n">maxNeighbours</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
+</code></pre></div>
+<p>And save one field at the end of each row for a special value e.g. and initialize all values to <code>numeric_limits&lt;uint16_t&gt;::max()-1</code> and later only iterate until we reach this value.</p>
+<p>This solution actually uses a bit more space <code>16 vs 8 bits</code> and requires us to do some initialization.</p>
+</details>
+</details>
+</details>
+</div>
+<h2 id="filling-nn">Filling nn</h2>
+<p>Let's look at how we actually fill our nearest neighbours arrays:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// fill NN</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0U</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">hist</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nb">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="o">++</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">assert</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">maxiter</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hist</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">firstPixel</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">assert</span><span class="p">(</span><span class="n">id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">invalidModuleId</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">assert</span><span class="p">(</span><span class="n">id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">thisModuleId</span><span class="p">);</span><span class="w">  </span><span class="c1">// same module</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Hist</span><span class="o">::</span><span class="n">bin</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hist</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="n">be</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="o">++</span><span class="n">p</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">assert</span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nnn</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">firstPixel</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">m</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">m</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">m</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nnn</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">maxNeighbours</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">nn</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Current iteration, keeping track of <code>k</code></p>
+<p>We will use <code>k</code> to keep track of which iteration we are currently in:
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0U</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">hist</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="o">++</span><span class="n">k</span><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>It shall not overflow <code>maxiter</code>
+<div class="highlight"><pre><span></span><code><span class="n">assert</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">maxiter</span><span class="p">);</span><span class="w"></span>
+</code></pre></div></p>
+<p>There hasn't been any nearest neighbours added to <code>nn[k]</code> so our counter of them nnn[k] should be zero, we check this here:</p>
+<div class="highlight"><pre><span></span><code><span class="n">assert</span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nnn</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span><span class="w"></span>
+</code></pre></div>
+<p>When we find a neighbour, we add it to <code>nn[k]</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nnn</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="n">assert</span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">maxNeighbours</span><span class="p">);</span><span class="w"></span>
+<span class="n">nn</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<p>We also check that our index <code>l</code> is within bounds.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Pointer to hist element <code>p</code></p>
+<p>We we look at the <code>j</code>th element in the histogram and set the pointer <code>p</code> to this element, <code>i</code> will be the absolute position of our digi.</p>
+<div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hist</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">firstPixel</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<p>We made sure of these conditions when we created and filled the histogram</p>
+<div class="highlight"><pre><span></span><code><span class="n">assert</span><span class="p">(</span><span class="n">id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">invalidModuleId</span><span class="p">);</span><span class="w"></span>
+<span class="n">assert</span><span class="p">(</span><span class="n">id</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">thisModuleId</span><span class="p">);</span><span class="w">  </span><span class="c1">// same module</span>
+</code></pre></div>
+<p>Let's find the pointer to the last element in the next bin, this will be <code>e</code>, probably short for <code>end</code>.</p>
+<p>Also, we increase <code>p</code> by one so we only start considering digis that come after <code>p</code></p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Hist</span><span class="o">::</span><span class="n">bin</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hist</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="n">be</span><span class="p">);</span><span class="w"></span>
+<span class="o">++</span><span class="n">p</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+</div>
+<div class="admonition success">
+<p class="admonition-title"><code>m</code>, or possible neighbours</p>
+<p>Finally we iterate over elements from <code>p++</code> until <code>e</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">firstPixel</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">assert</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>We know that our column is correct:</p>
+<div class="highlight"><pre><span></span><code><span class="n">assert</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">m</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="n">assert</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">m</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<p>So we only need to check whether our row value is <code>&lt;=1</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">m</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<p>If our row is within bounds, we add <code>m</code> to <code>nn</code>.</p>
+</div>
+<details class="example" open="open"><summary>Example</summary><p>In this example:</p>
+<p><img alt="Iteration order of pixels in cluster" src="../../img/documentation/m1.png" /></p>
+<p>For <code>m</code> we consider the following values</p>
+<table>
+<thead>
+<tr>
+<th>i - firstPixel</th>
+<th></th>
+<th>*(++p)</th>
+<th><code>m</code></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>-&gt;</td>
+<td>1</td>
+<td>9</td>
+<td>13</td>
+<td>12</td>
+<td>5</td>
+<td>2</td>
+<td>16</td>
+</tr>
+<tr>
+<td>1</td>
+<td>-&gt;</td>
+<td>9</td>
+<td>13</td>
+<td>12</td>
+<td>5</td>
+<td>2</td>
+<td>26</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>-&gt;</td>
+<td>13</td>
+<td>12</td>
+<td>5</td>
+<td>2</td>
+<td>16</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td>-&gt;</td>
+<td>12</td>
+<td>5</td>
+<td>2</td>
+<td>16</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>And for the <code>nearest neighbours</code> we get:</p>
+<table>
+<thead>
+<tr>
+<th>i - firstPixel</th>
+<th></th>
+<th>nn values</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>-&gt;</td>
+<td>9</td>
+<td>12</td>
+<td>5</td>
+</tr>
+<tr>
+<td>1</td>
+<td>-&gt;</td>
+<td>9</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>-&gt;</td>
+<td>12</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td>-&gt;</td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2 id="assign-same-clusterid-to-clusters">Assign same <code>clusterId</code> to clusters</h2>
+<p>Essentially, the following piece of code assigns the same <code>clusterId</code> to all pixels/digis in a cluster.</p>
+<p>These <code>clusterId</code>s won't be ordered, start from <code>0</code>, but they will be the same in for neighbouring pixels. They will also be in the range <code>0</code> to <code>numElements</code>, which is the maximum number of digis for this particular event.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">nloops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">__syncthreads_or</span><span class="p">(</span><span class="n">more</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nloops</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0U</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">hist</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="o">++</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hist</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">firstPixel</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clusterId</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">clusterId</span><span class="p">[</span><span class="n">m</span><span class="p">])</span><span class="w"></span>
+<span class="w">        </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clusterId</span><span class="p">[</span><span class="n">m</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="n">clusterId</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">more</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0U</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">hist</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="o">++</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hist</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">firstPixel</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">kk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">kk</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nnn</span><span class="p">[</span><span class="n">k</span><span class="p">];</span><span class="w"> </span><span class="o">++</span><span class="n">kk</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nn</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">kk</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">firstPixel</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">old</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atomicMin_block</span><span class="p">(</span><span class="o">&amp;</span><span class="n">clusterId</span><span class="p">[</span><span class="n">m</span><span class="p">],</span><span class="w"> </span><span class="n">clusterId</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// do we need memory fence?</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">old</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">clusterId</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// end the loop only if no changes were applied</span>
+<span class="w">            </span><span class="n">more</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">atomicMin_block</span><span class="p">(</span><span class="o">&amp;</span><span class="n">clusterId</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">old</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w">  </span><span class="c1">// nnloop</span>
+<span class="w">    </span><span class="p">}</span><span class="w">    </span><span class="c1">// pixel loop</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">++</span><span class="n">nloops</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// end while</span>
+</code></pre></div>
+<p>We also get a bit of explanation, namely</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// for each pixel, look at all the pixels until the end of the module;</span>
+<span class="c1">// when two valid pixels within +/- 1 in x or y are found, set their id to the minimum;</span>
+<span class="c1">// after the loop, all the pixel in each cluster should have the id equeal to the lowest</span>
+<span class="c1">// pixel in the cluster ( clus[i] == i ).</span>
+</code></pre></div>
+<p>This is all true, but we don't see actually why though.</p>
+<p>We need to understand what <code>nn</code> and <code>nnn</code> and the <code>hist</code> is, and how everything is connected, and why our <code>while</code> loop is divided into two parts.</p>
+<p>So let's dig in.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">nloops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<p><code>more</code> will be set to true every loop if we updated the <code>cluterId</code> for the current pixel, and so it will tell us to terminate our loop or not</p>
+<p><code>nloops</code> or number of loops</p>
+<div class="highlight"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">__syncthreads_or</span><span class="p">(</span><span class="n">more</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+</code></pre></div>
+<p>One can reason intuitavely what this does, or can consult the <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html">CUDA C Programming Guide</a>.</p>
+<div class="admonition quote">
+<p class="admonition-title">int __syncthreads_or(int predicate);</p>
+<p>is identical to __syncthreads() with the additional feature that it evaluates predicate for all threads of the block and returns non-zero if and only if predicate evaluates to non-zero for any of them.</p>
+</div>
+<p>So <code>more</code>, our local variable is scanned for every thread in the block. We terminate the loop if we didn't update any <code>cluterId</code>s in the previous iteration.</p>
+                
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../getting-started/validation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Workflows" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Workflows
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../gpuClustering02/" class="md-footer__link md-footer__link--next" aria-label="Next: gpuClustering.h - countModules" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              gpuClustering.h - countModules
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "content.tabs.link"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.01824240.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.0d86bc28.min.js"></script>
+      
+    
+  </body>
+</html>

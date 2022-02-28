@@ -8,18 +8,15 @@ nav:
   - Documentation:
     - documentation/gpuClustering.md
     - documentation/gpuClustering02.md
+    - documentation/calibPixels.md
   - Archive:
     - archive/index.md
-    # - weeks/week01.md
-    # - weeks/week01_exercises.md
-    # - weeks/week02.md
-    # - weeks/week02_exercises.md
-    # - weeks/further_reading.md
 theme:
   name: material
   features:
     - navigation.sections
     - content.tabs.link
+    - content.code.annotate
   icon:
     admonition:
       note: fontawesome/solid/sticky-note

@@ -12,12 +12,12 @@ It is recommended and in some cases necessary to follow these courses and read t
 
 [Introduction to GPUs by New York University](https://nyu-cds.github.io/python-gpu/02-cuda/)
 
-![Introduction to GPUs by New York University header](../img/other/n00.png)
+![Introduction to GPUs by New York University header](https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/master/docs/img/other/n00.png)
 
 
 ### 2. Previous Patatrack Knowledge transfer
 
-![Indico header of Patatrack Knowledge transfer](../img/other/n01.png)
+![Indico header of Patatrack Knowledge transfer](https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/master/docs/img/other/n01.png)
 
 Access here: [https://indico.cern.ch/event/863657/](https://indico.cern.ch/event/863657/)
 
@@ -25,17 +25,17 @@ Access here: [https://indico.cern.ch/event/863657/](https://indico.cern.ch/event
 
 [Direct link to Welcome and Introduction to Parallel Programming](https://indico.cern.ch/event/863657/contributions/3666693/attachments/1958928/3254985/introduction_parallel_programming_and_workshop.pdf)
 
-![Presentation 01](../img/other/n02.png)
+![Presentation 01](https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/master/docs/img/other/n02.png)
 
 [Direck link to Introduction to GPU programming using CUDA](https://indico.cern.ch/event/863657/contributions/3666693/attachments/1958928/3254986/introduction_CUDA_slides.pdf)
 
-![Presentation 02](../img/other/n03.png)
+![Presentation 02](https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/master/docs/img/other/n03.png)
 
 [Direct link to SoA model for Pixel Reconstruction (and beyond?)](https://indico.cern.ch/event/863657/contributions/3666696/attachments/1959745/3256623/SoAModelforPxReco.pdf)
 
 [Direct link to A fully Heterogeneous Pixel Reconstruction](https://indico.cern.ch/event/863657/contributions/3666696/attachments/1959745/3256622/PixelFullHeterogeneousWF.pdf)
 
-![Presentation 02](../img/other/n04.png)
+![Presentation 02](https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/master/docs/img/other/n04.png)
 
 #### Hands-on
 
@@ -47,28 +47,28 @@ Solve all exercises here [https://patatrack.web.cern.ch/patatrack/wiki/cuda_trai
 
 [Part 3](https://patatrack.web.cern.ch/patatrack/wiki/cuda_training_dpg_12_2019_part3/)
 
-![Patatrack Wiki](../img/other/n05.png)
+![Patatrack Wiki](https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/master/docs/img/other/n06.png)
 
 ### 3. Caltech - GPU Programming [CS 179]
 
-![Caltech course image](../img/other/n07.png)
+![Caltech course image](https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/master/docs/img/other/n07.png)
 
 [http://courses.cms.caltech.edu/cs179/](http://courses.cms.caltech.edu/cs179/)
 
 ### 4. Patatrack website and Wiki
 
-![Patatrack Wiki](../img/other/n09.png)
+![Patatrack Wiki](https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/master/docs/img/other/n09.png)
 
 Access Wiki here: [https://patatrack.web.cern.ch/patatrack/wiki/](https://patatrack.web.cern.ch/patatrack/wiki/).
 
-![Patatrack Website](../img/other/n10.png)
+![Patatrack Website](https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/master/docs/img/other/n10.png)
 
 Access Website here: [https://patatrack.web.cern.ch/patatrack/index.html](https://patatrack.web.cern.ch/patatrack/index.html).
 
 
 ### 5. CUDA algorithms in CMSSW documentation
 
-![CUDA algorithms in CMSSW documentation image](../img/other/n08.png)
+![CUDA algorithms in CMSSW documentation image](https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/master/docs/img/other/n08.png)
 
 [https://github.com/cms-patatrack/cmssw/blob/master/HeterogeneousCore/CUDACore/README.md](https://github.com/cms-patatrack/cmssw/blob/master/HeterogeneousCore/CUDACore/README.md)
 
@@ -79,4 +79,4 @@ Honestly, so many other online resources just borrow from here, one might as wel
 
 Access here: [https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)
 
-![Website](../img/other/n06.png)
+![Website](https://raw.githubusercontent.com/czangela/cms-gpu-knowledge-transfer/master/docs/img/other/n06.png)
